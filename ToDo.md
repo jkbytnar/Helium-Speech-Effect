@@ -10,6 +10,6 @@
   -   Rozpoznawanie głosek
   -   Rozciąganie FFT
   -   Spectogram
-  -   Proponowane (RAT)
+  -   Proponowane (praat: https://github.com/mwv/praat_formants_python/blob/master/praat_formants_python/_formants.py)
 - 
 
