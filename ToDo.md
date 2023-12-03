@@ -5,7 +5,7 @@
 - Raport z resherczu też - 
 - Diagram Gantta - Hubert
 - Diagram archtektury do Raportu - Jasiek
-- Obczajenie Bibliotek - Jasiek
+- Obczajenie Bibliotek - Jasiek i Wojtek
   -   Wyciąganie F0
   -   Rozpoznawanie głosek
   -   Rozciąganie FFT
