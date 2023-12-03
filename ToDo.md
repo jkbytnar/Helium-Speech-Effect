@@ -2,10 +2,10 @@
 - Ekstrachowanie F0 ( czy da się w głoskach typu szum )
 - Rozpoznawanie głosek z i bez F0  
 - Przygotowanie DataSet
-- Raport z resherczu też
-- Diagram Gantta 
-- Diagram archtektury do Raportu
-- Obczajenie Bibliotek
+- Raport z resherczu też - 
+- Diagram Gantta - Hubert
+- Diagram archtektury do Raportu - Jasiek
+- Obczajenie Bibliotek - Jasiek
   -   Wyciąganie F0
   -   Rozpoznawanie głosek
   -   Rozciąganie FFT
