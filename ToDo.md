@@ -6,9 +6,10 @@
 - Diagram Gantta 
 - Diagram archtektury do Raportu
 - Obczajenie Bibliotek
--   Wyciąganie F0
--   Rozpoznawanie głosek
--   Rozciąganie FFT
--   Spectogram
--   Proponowane (RAT)
+  -   Wyciąganie F0
+  -   Rozpoznawanie głosek
+  -   Rozciąganie FFT
+  -   Spectogram
+  -   Proponowane (RAT)
 - 
+
