@@ -1,0 +1,4 @@
+librosa -> operacje na audio
+speechbrain -> voice activity detection
+praat -> ekstrakcja f0
+pytorch, kymatio -> spec to audio
