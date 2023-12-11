@@ -1,6 +1,6 @@
 import librosa
 import os
-from scipy.io.wavfile import read
+
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,3 +23,13 @@ ax.set(title='pYIN fundamental frequency estimation')
 fig.colorbar(img, ax=ax, format="%+2.f dB")
 ax.plot(times, f0, label='f0', color='cyan', linewidth=3)
 ax.legend(loc='upper right')
+
+
+y, sr = librosa.load(librosa.ex('trumpet'))
+f0, voicing, voicing_p = librosa.pyin(y=y, sr=sr, fmin=200, fmax=700)
+S = np.abs(librosa.stft(y))
+freqs = librosa.fft_frequencies(sr=sr)
+harmonics = np.arange(1, 13)
+f0_harm = librosa.f0_harmonics(S, freqs=freqs, f0=f0, harmonics=harmonics)
+bsdagjkjdfsknlgfmkl
+kjbsgrfndklkl

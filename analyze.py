@@ -153,4 +153,3 @@ def plot_mfcc(data):
         plt.savefig("./Plots/MFCCs/" + f"MFCC_{row['Speaker']}_{row['Content']}.png")
         plt.close()
     return
-
