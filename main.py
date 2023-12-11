@@ -1,6 +1,7 @@
 import analyze
 
 if __name__ == '__main__':
+    print("wojczi_____")
 
     get_spec = False
     get_mfcc = True
