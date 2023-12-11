@@ -53,5 +53,5 @@ def main(input_file_path, output_file_name):
 
 if __name__ == "__main__":
     input_file_path = 'A_NoHell.wav'
-    output_file_name = 'modified_A_noHell.wav'
+    output_file_name = 'modified_A_Hell.wav'
     main(input_file_path, output_file_name)
