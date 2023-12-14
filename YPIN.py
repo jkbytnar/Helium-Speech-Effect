@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 audio_path = os.fspath("WP_A_Hel.wav")
 x, fs = librosa.load(audio_path)
 
-deltaf = 5
-frame_size = fs // deltaf
-hop_size = frame_size // 2
+delta = 5
+frame_size = int(fs // delta)
+hop_size = int( frame_size // 2)
 f0, voiced_flag, voiced_probs = librosa.pyin(x,fmin=50,fmax=800,sr=fs,frame_length=frame_size,hop_length=hop_size)
 print(f0)
 print(voiced_flag)
@@ -31,5 +31,3 @@ S = np.abs(librosa.stft(y))
 freqs = librosa.fft_frequencies(sr=sr)
 harmonics = np.arange(1, 13)
 f0_harm = librosa.f0_harmonics(S, freqs=freqs, f0=f0, harmonics=harmonics)
-bsdagjkjdfsknlgfmkl
-kjbsgrfndklkl
