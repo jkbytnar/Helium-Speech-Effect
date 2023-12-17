@@ -29,7 +29,7 @@ player = p.open(
 
 while True: #do this for 10 seconds
     data = np.fromstring(stream.read(chunk),dtype=np.float32)
-    helium = Hellium.voice2hel(data)
+    helium = Helium.voice2hel(data)
     player.write(helium, chunk)
 
 
