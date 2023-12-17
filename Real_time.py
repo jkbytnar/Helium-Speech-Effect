@@ -1,55 +1,38 @@
-import sounddevice as sd
+import pyaudio
+import struct
 import numpy as np
-import Hellium
-import wave
-from scipy.io.wavfile import write
+import librosa
+import Helium
 
-hel_glob = np.array([])
-in_glob = np.array([])
-hel_scaled_glob = np.array([])
-def print_sound(indata, outdata,  frames, time, status):
-    global hel_glob, in_glob, hel_scaled_glob
-    in_data_gain = np.mean(indata)
-    hel = Hellium.voice2hel(indata)
-    hel_gain = np.mean(hel)
-    scale = in_data_gain/hel_gain
-    hel_scaled = hel*scale
+chunk = 1024*4
+format = pyaudio.paFloat32
+channels = 1
+rate = 16000
 
-    hel_glob = np.concatenate((hel_glob, hel[0]))
-    in_glob = np.concatenate((in_glob, indata[0]))
-    hel_scaled_glob = np.concatenate((hel_scaled_glob, hel_scaled[0]))
-    outdata[:] = indata
+p = pyaudio.PyAudio()
 
-try:
+stream = p.open(
+    format=format,
+    channels=channels,
+    rate=rate,
+    input=True,
+    frames_per_buffer=chunk
+)
 
-    with sd.Stream(channels=1, samplerate=16000, callback=print_sound):
-        input()
-        print(np.shape(in_glob))
+player = p.open(
+    format=format,
+    channels=channels,
+    rate=rate,
+    output=True,
+    frames_per_buffer=chunk
+)
 
-        channels = 1
-        sample_width = 4  # 4 bajty dla 32-bit PCM
-        output_file = 'output_in.wav'
-        # Tworzymy obiekt wave
-        with wave.open(output_file, 'w') as wav_file:
-            wav_file.setnchannels(channels)
-            wav_file.setsampwidth(sample_width)
-            wav_file.setframerate(16000)
-            wav_file.writeframes(in_glob.astype(np.float32).tobytes())
+while True: #do this for 10 seconds
+    data = np.fromstring(stream.read(chunk),dtype=np.float32)
+    helium = Hellium.voice2hel(data)
+    player.write(helium, chunk)
 
-        output_file = 'output_hel.wav'
-        # Tworzymy obiekt wave
-        with wave.open(output_file, 'w') as wav_file:
-            wav_file.setnchannels(channels)
-            wav_file.setsampwidth(sample_width)
-            wav_file.setframerate(16000)
-            wav_file.writeframes(hel_scaled_glob.astype(np.float32).tobytes())
 
-        output_file = 'output_hel_scaled.wav'
-        # Tworzymy obiekt wave
-        with wave.open(output_file, 'w') as wav_file:
-            wav_file.setnchannels(channels)
-            wav_file.setsampwidth(sample_width)
-            wav_file.setframerate(16000)
-            wav_file.writeframes(hel_glob.astype(np.float32).tobytes())
-except KeyboardInterrupt:
-    exit()
+stream.stop_stream()
+stream.close()
+p.terminate()

@@ -7,12 +7,9 @@ import torch.nn.functional as F
 def voice2hel(audio):
     fs = 16000
     formant_multiplier = 1.2
-
-    audio = np.transpose([input_wav(audio[0], fs, formant_multiplier)])
-
+    audio = input_wav(audio.astype(float), fs, formant_multiplier)
     return audio
 def input_wav(audio, fs, formant_multiplier):
-    audio = audio.astype(np.float64)
     f0, sp, ap = pw.wav2world(audio, fs)
     sp = envelope_stretch(sp, formant_multiplier)
 
