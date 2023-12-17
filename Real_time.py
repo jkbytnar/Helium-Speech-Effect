@@ -2,7 +2,7 @@ import pyaudio
 import numpy as np
 import Helium
 
-chunk = 1024*4
+chunk = 1024*8
 format = pyaudio.paFloat32
 channels = 1
 rate = 16000
