@@ -1,15 +1,16 @@
 import pyaudio
 import numpy as np
-import Helium
+import helium
+import keyboard
 
 chunk = 1024*8
-format = pyaudio.paFloat32
+audio_format = pyaudio.paFloat32
 channels = 1
 rate = 16000
 p = pyaudio.PyAudio()
 
 stream = p.open(
-    format=format,
+    format=audio_format,
     channels=channels,
     rate=rate,
     input=True,
@@ -17,7 +18,7 @@ stream = p.open(
 )
 
 player = p.open(
-    format=format,
+    format=audio_format,
     channels=channels,
     rate=rate,
     output=True,
@@ -25,9 +26,16 @@ player = p.open(
 )
 
 while True:
-    data = np.fromstring(stream.read(chunk),dtype=np.float32)
-    helium = Helium.voice2hel(data)
-    player.write(helium, chunk)
+    try:
+        data = np.frombuffer(stream.read(chunk), dtype=np.float32)
+        audio_hel = helium.voice2hel(data)
+        player.write(audio_hel, chunk)
+    except Exception as e:
+        print(type(e).__name__ + ': ' + str(e))
+
+    if keyboard.is_pressed('Esc'):
+        print('\nInterrupted by user')
+        break
 
 stream.stop_stream()
 stream.close()
